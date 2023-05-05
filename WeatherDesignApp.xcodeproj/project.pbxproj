@@ -157,10 +157,12 @@
 		EFD6324529E3371400E07C58 /* WeatherDesignApp */ = {
 			isa = PBXGroup;
 			children = (
+				EFD6326C29E339B800E07C58 /* Controller */,
+				EFD6325B29E3378200E07C58 /* Manager */,
+				EFD6325A29E3377A00E07C58 /* Model */,
+				EFD6326D29E339BE00E07C58 /* Cell */,
 				EF45079129F6AC55006B5C80 /* Helpers */,
 				EFD6325C29E3378700E07C58 /* Companents */,
-				EFD6325A29E3377A00E07C58 /* Model */,
-				EFD6325B29E3378200E07C58 /* Manager */,
 				EFD6325D29E3378E00E07C58 /* Resources */,
 				EFD6325429E3371500E07C58 /* Info.plist */,
 			);
@@ -194,8 +196,6 @@
 			children = (
 				EF6C959B29EAD1C400E0198B /* WeatherHeroUIView */,
 				EF6C959C29EAD1D500E0198B /* WeatherPropertyUIView */,
-				EFD6326C29E339B800E07C58 /* Controller */,
-				EFD6326D29E339BE00E07C58 /* Cell */,
 			);
 			path = Companents;
 			sourceTree = "<group>";
