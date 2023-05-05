@@ -13,6 +13,7 @@
 		EF0E4C5429E6DC0B0041910C /* CurrentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF0E4C5329E6DC0B0041910C /* CurrentModel.swift */; };
 		EF0E4C5729E6E3AB0041910C /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = EF0E4C5629E6E3AB0041910C /* SDWebImage */; };
 		EF45079429F6AC75006B5C80 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF45079329F6AC75006B5C80 /* StringExtensions.swift */; };
+		EF6B92882A03FE1500865D4B /* CellsExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF6B92872A03FE1500865D4B /* CellsExtensions.swift */; };
 		EF6C959529EACF7000E0198B /* WeatherForecastViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF6C959429EACF7000E0198B /* WeatherForecastViewController.swift */; };
 		EF6C959729EAD1A100E0198B /* WeatherForecastHeroUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF6C959629EAD1A100E0198B /* WeatherForecastHeroUIView.swift */; };
 		EF6C959E29EAE0A900E0198B /* WeatherForecastTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF6C959D29EAE0A900E0198B /* WeatherForecastTableViewCell.swift */; };
@@ -48,6 +49,7 @@
 		EF0E4C5129E6DC010041910C /* HourlyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourlyModel.swift; sourceTree = "<group>"; };
 		EF0E4C5329E6DC0B0041910C /* CurrentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentModel.swift; sourceTree = "<group>"; };
 		EF45079329F6AC75006B5C80 /* StringExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
+		EF6B92872A03FE1500865D4B /* CellsExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellsExtensions.swift; sourceTree = "<group>"; };
 		EF6C959429EACF7000E0198B /* WeatherForecastViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherForecastViewController.swift; sourceTree = "<group>"; };
 		EF6C959629EAD1A100E0198B /* WeatherForecastHeroUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherForecastHeroUIView.swift; sourceTree = "<group>"; };
 		EF6C959D29EAE0A900E0198B /* WeatherForecastTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherForecastTableViewCell.swift; sourceTree = "<group>"; };
@@ -103,6 +105,7 @@
 			isa = PBXGroup;
 			children = (
 				EF45079329F6AC75006B5C80 /* StringExtensions.swift */,
+				EF6B92872A03FE1500865D4B /* CellsExtensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -155,7 +158,7 @@
 			isa = PBXGroup;
 			children = (
 				EF45079129F6AC55006B5C80 /* Helpers */,
-				EFD6325C29E3378700E07C58 /* View */,
+				EFD6325C29E3378700E07C58 /* Companents */,
 				EFD6325A29E3377A00E07C58 /* Model */,
 				EFD6325B29E3378200E07C58 /* Manager */,
 				EFD6325D29E3378E00E07C58 /* Resources */,
@@ -186,14 +189,15 @@
 			path = Manager;
 			sourceTree = "<group>";
 		};
-		EFD6325C29E3378700E07C58 /* View */ = {
+		EFD6325C29E3378700E07C58 /* Companents */ = {
 			isa = PBXGroup;
 			children = (
-				EFD6326E29E33DF000E07C58 /* UIView */,
+				EF6C959B29EAD1C400E0198B /* WeatherHeroUIView */,
+				EF6C959C29EAD1D500E0198B /* WeatherPropertyUIView */,
 				EFD6326C29E339B800E07C58 /* Controller */,
 				EFD6326D29E339BE00E07C58 /* Cell */,
 			);
-			path = View;
+			path = Companents;
 			sourceTree = "<group>";
 		};
 		EFD6325D29E3378E00E07C58 /* Resources */ = {
@@ -225,15 +229,6 @@
 				EFDB256B29F2E992000B279E /* TableViewCell */,
 			);
 			path = Cell;
-			sourceTree = "<group>";
-		};
-		EFD6326E29E33DF000E07C58 /* UIView */ = {
-			isa = PBXGroup;
-			children = (
-				EF6C959B29EAD1C400E0198B /* WeatherHeroUIView */,
-				EF6C959C29EAD1D500E0198B /* WeatherPropertyUIView */,
-			);
-			path = UIView;
 			sourceTree = "<group>";
 		};
 		EFD6326F29E33DFD00E07C58 /* WeatherHome */ = {
@@ -366,6 +361,7 @@
 				EFD6326129E3380E00E07C58 /* WeatherHomeCollectionViewCell.swift in Sources */,
 				EFE6A46D29FBC1090065FD28 /* SearchFavoriteCollectionViewCell.swift in Sources */,
 				EFD6326B29E3389D00E07C58 /* WeatherPropertyUIView.swift in Sources */,
+				EF6B92882A03FE1500865D4B /* CellsExtensions.swift in Sources */,
 				EFEAB1D329F16D4C001A1E2E /* SearchDataSource.swift in Sources */,
 				EF0E4C4D29E6D3F70041910C /* WeatherModel.swift in Sources */,
 				EF6C959729EAD1A100E0198B /* WeatherForecastHeroUIView.swift in Sources */,

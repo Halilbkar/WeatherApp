@@ -169,9 +169,7 @@ class WeatherPropertyUIView: UIView {
     required init(coder: NSCoder) {
         fatalError()
     }
-}
-
-extension WeatherPropertyUIView: WeatherHomeHeroUIViewProtocol {
+    
     func configProperty(daily: Daily) {
         
         visibilityLabel.text = String(daily.clouds)

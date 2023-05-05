@@ -14,7 +14,6 @@ protocol SearchTableViewCellProtocol: AnyObject {
 
 class SearchTableViewCell: UITableViewCell {
     
-    static let identifier = "SearchTableViewCell"
     
     let daysLabel: UILabel = {
         let label = UILabel()

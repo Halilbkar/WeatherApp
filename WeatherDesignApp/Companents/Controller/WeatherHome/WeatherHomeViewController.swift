@@ -14,7 +14,7 @@ var globalName = ""
 
 class WeatherHomeViewController: UIViewController {
     
-    private let daysLabel: UILabel = {
+    private lazy var daysLabel: UILabel = {
         let label = UILabel()
         label.text = "Today"
         label.font = .boldSystemFont(ofSize: 15)
@@ -23,7 +23,7 @@ class WeatherHomeViewController: UIViewController {
         return label
     }()
     
-    private let nextDaysLabel: UILabel = {
+    private lazy var nextDaysLabel: UILabel = {
         let label = UILabel()
         label.text = "Next Days"
         label.font = .boldSystemFont(ofSize: 15)
@@ -32,7 +32,7 @@ class WeatherHomeViewController: UIViewController {
         return label
     }()
     
-    private let weatherTodayCollectionView: UICollectionView = {
+    private lazy var weatherTodayCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         layout.itemSize = CGSize(width: 70, height: 110)
@@ -44,10 +44,13 @@ class WeatherHomeViewController: UIViewController {
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.backgroundColor = .clear
+        collectionView.delegate = viewModel.dataSource
+        collectionView.dataSource = viewModel.dataSource
+        
         return collectionView
     }()
     
-    private var weatherHero: WeatherHomeHeroUIView = {
+    private lazy var weatherHero: WeatherHomeHeroUIView = {
         let view = WeatherHomeHeroUIView()
         
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -56,7 +59,7 @@ class WeatherHomeViewController: UIViewController {
         return view
     }()
     
-    private var weatherProperty: WeatherPropertyUIView = {
+    private lazy var weatherProperty: WeatherPropertyUIView = {
         let view = WeatherPropertyUIView()
         
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -81,14 +84,11 @@ class WeatherHomeViewController: UIViewController {
         view.addSubview(daysLabel)
         view.addSubview(nextDaysLabel)
         
-        weatherTodayCollectionView.delegate = viewModel.dataSource
-        weatherTodayCollectionView.dataSource = viewModel.dataSource
-        
         viewModel.fetchLocationSetup()
         
         viewModel.delegate = self
         viewModel.dataSource.delegate = self
-        weatherHero.delegate = (self.weatherProperty)
+        weatherHero.delegate = self
                 
         getNextDays()
         
@@ -102,7 +102,7 @@ class WeatherHomeViewController: UIViewController {
         self.title = globalName
                 
         viewModel.dataSource.hourly.removeAll()
-        weatherHero.daily.removeAll()
+        weatherHero.dailyArray.removeAll()
         
         viewModel.fetchWeatherData()
     }
@@ -169,12 +169,12 @@ extension WeatherHomeViewController: WeatherHomeViewModelProtocol {
     
     func viewReload() {
         self.weatherTodayCollectionView.reloadData()
-        self.weatherHero.weatherCollectionView.reloadData()
+        self.weatherHero.collectionViewReloadData()
     }
     
     func setDailyData(daily: [Daily]) {
         for indeks in 0...6 {
-            self.weatherHero.daily.append(daily[indeks])
+            self.weatherHero.dailyArray.append(daily[indeks])
         }
     }
 }
@@ -183,5 +183,11 @@ extension WeatherHomeViewController: WeatherHomeDataSourceProtocol {
     
     func navigationPush() {
         self.navigationController?.pushViewController(SearchViewController(), animated: true)
+    }
+}
+
+extension WeatherHomeViewController: WeatherHomeHeroUIViewProtocol {
+    func configProperty(daily: Daily) {
+        weatherProperty.configProperty(daily: daily)
     }
 }

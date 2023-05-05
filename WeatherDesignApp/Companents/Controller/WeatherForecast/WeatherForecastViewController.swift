@@ -9,7 +9,7 @@ import UIKit
 
 class WeatherForecastViewController: UIViewController {
     
-    private let backImageView: UIImageView = {
+    private lazy var backImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.clipsToBounds = true
         imageView.backgroundColor = UIColor(named: "heroColor")
@@ -17,18 +17,7 @@ class WeatherForecastViewController: UIViewController {
         return imageView
     }()
     
-    private func addGradient() {
-        guard let heroColor = UIColor(named: "heroColor") else { return }
-        let gradientLayer = CAGradientLayer()
-        gradientLayer.colors = [
-            UIColor.white.cgColor,
-            heroColor.cgColor
-        ]
-        gradientLayer.frame = backImageView.bounds
-        view.layer.insertSublayer(gradientLayer, at: 0)
-    }
-    
-    private let weatherForecastTableView: UITableView = {
+    private lazy var weatherForecastTableView: UITableView = {
         let table = UITableView()
         table.backgroundColor = .clear
         table.isScrollEnabled = false
@@ -40,13 +29,13 @@ class WeatherForecastViewController: UIViewController {
         return table
     }()
     
-    private var weatherHero: WeatherForecastHeroUIView = {
+    private lazy var weatherHero: WeatherForecastHeroUIView = {
         let view = WeatherForecastHeroUIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
-    private var weatherProperty: WeatherPropertyUIView = {
+    private lazy var weatherProperty: WeatherPropertyUIView = {
         let view = WeatherPropertyUIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.layer.cornerRadius = 10
@@ -114,6 +103,17 @@ class WeatherForecastViewController: UIViewController {
         NSLayoutConstraint.activate(weatherHeroConstraints)
         NSLayoutConstraint.activate(weatherPropertyConstraints)
         NSLayoutConstraint.activate(weatherForecastTableViewConstraints)
+    }
+    
+    private func addGradient() {
+        guard let heroColor = UIColor(named: "heroColor") else { return }
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.colors = [
+            UIColor.white.cgColor,
+            heroColor.cgColor
+        ]
+        gradientLayer.frame = backImageView.bounds
+        view.layer.insertSublayer(gradientLayer, at: 0)
     }
 }
 

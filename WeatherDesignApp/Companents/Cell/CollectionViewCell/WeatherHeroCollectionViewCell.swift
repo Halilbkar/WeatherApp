@@ -10,13 +10,10 @@ import SDWebImage
 import Lottie
 
 class WeatherHeroCollectionViewCell: UICollectionViewCell {
-    
-    static let identifier = "WeatherHeroCollectionViewCell"
-    
+        
     private var animationView: LottieAnimationView?
     
-    
-    let backgroundImageView: UIImageView = {
+    private lazy var backgroundImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.clipsToBounds = true
         imageView.image = UIImage(named: "background")
@@ -26,7 +23,7 @@ class WeatherHeroCollectionViewCell: UICollectionViewCell {
         return imageView
     }()
     
-    let cloudImageView: UIImageView = {
+    private lazy var cloudImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.clipsToBounds = true
         imageView.image = UIImage(named: "cloud")
@@ -36,7 +33,7 @@ class WeatherHeroCollectionViewCell: UICollectionViewCell {
         return imageView
     }()
     
-    let daysLabel: UILabel = {
+    private lazy var daysLabel: UILabel = {
         let label = UILabel()
         label.text = "days"
         label.layer.cornerRadius = 12
@@ -50,7 +47,7 @@ class WeatherHeroCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
-    var degreeLabel: UILabel = {
+    private lazy var degreeLabel: UILabel = {
         let label = UILabel()
         label.text = "25"
         label.textColor = .white
@@ -60,7 +57,7 @@ class WeatherHeroCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
-    let conditionLabel: UILabel = {
+    private lazy var conditionLabel: UILabel = {
         let label = UILabel()
         label.text = "wind"
         label.textColor = .white

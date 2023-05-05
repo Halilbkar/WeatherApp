@@ -9,7 +9,9 @@ import UIKit
 
 class SearchViewController: UIViewController {
     
-    private let favoriteCityCollectionView: UICollectionView = {
+    private lazy var viewModel = SearchViewModel()
+    
+    private lazy var favoriteCityCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         
         layout.scrollDirection = .vertical
@@ -22,11 +24,13 @@ class SearchViewController: UIViewController {
         collectionView.showsVerticalScrollIndicator = false
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.backgroundColor = UIColor(named: "bottomColor")
+        collectionView.delegate = viewModel.dataSource
+        collectionView.dataSource = viewModel.dataSource
 
         return collectionView
     }()
     
-    private let searchTableView: UITableView = {
+    private lazy var searchTableView: UITableView = {
         
         let table = UITableView()
         table.backgroundColor = UIColor(named: "bottomColor")
@@ -34,11 +38,13 @@ class SearchViewController: UIViewController {
         table.separatorStyle = .none
         table.translatesAutoresizingMaskIntoConstraints = false
         table.register(SearchTableViewCell.self, forCellReuseIdentifier: SearchTableViewCell.identifier)
+        table.delegate = viewModel.dataSource
+        table.dataSource = viewModel.dataSource
         
         return table
     }()
     
-    private let backImageView: UIImageView = {
+    private lazy var backImageView: UIImageView = {
         
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -48,22 +54,20 @@ class SearchViewController: UIViewController {
         return imageView
     }()
     
-    private let searchBar: UISearchBar = {
+    private lazy var searchBar: UISearchBar = {
         let searchBar = UISearchBar()
         
         searchBar.placeholder = "Search"
         searchBar.translatesAutoresizingMaskIntoConstraints = false
         searchBar.barStyle = .black
         searchBar.backgroundImage = UIImage()
-        let ovalImage = UIImage(systemName: "circle.fill")?.withTintColor(.white, renderingMode: .alwaysTemplate)
-        searchBar.backgroundImage = ovalImage?.resizableImage(withCapInsets: .zero, resizingMode: .stretch)
         searchBar.tintColor = .clear
-        searchBar.searchTextField.textColor = UIColor.white
-        
+        searchBar.delegate = viewModel.dataSource
+
         return searchBar
     }()
     
-    private let locationButton: UIButton = {
+    private lazy var locationButton: UIButton = {
         let button = UIButton()
         
         button.tintColor = .black
@@ -73,10 +77,9 @@ class SearchViewController: UIViewController {
         button.backgroundColor = .white
 
         return button
-        
     }()
     
-    private let favoriteButton: UIButton = {
+    private lazy var favoriteButton: UIButton = {
         let button = UIButton()
         
         button.tintColor = .black
@@ -89,7 +92,7 @@ class SearchViewController: UIViewController {
         return button
     }()
     
-    let heroLabel: UILabel = {
+    private lazy var heroLabel: UILabel = {
         let label = UILabel()
         
         label.text = "Pick Location"
@@ -102,7 +105,7 @@ class SearchViewController: UIViewController {
         return label
     }()
     
-    let descriptionLabel: UILabel = {
+    private lazy var descriptionLabel: UILabel = {
         let label = UILabel()
         
         label.text = "Find the city that you want to know the detailed weather info at this time."
@@ -116,8 +119,6 @@ class SearchViewController: UIViewController {
         return label
     }()
     
-    lazy var viewModel = SearchViewModel()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -130,17 +131,9 @@ class SearchViewController: UIViewController {
         view.addSubview(locationButton)
         view.addSubview(favoriteButton)
                 
-        searchTableView.delegate = viewModel.dataSource
-        searchTableView.dataSource = viewModel.dataSource
-        
-        favoriteCityCollectionView.delegate = viewModel.dataSource
-        favoriteCityCollectionView.dataSource = viewModel.dataSource
-        
         viewModel.dataSource.delegate = self
         viewModel.delegate = self
-        
-        searchBar.delegate = viewModel.dataSource
-        
+                
         locationButton.addTarget(self, action: #selector(locationButtonTapped), for: .touchUpInside)
         
         favoriteButton.addTarget(self, action: #selector(favoriteButtonTapped), for: .touchUpInside)
@@ -234,7 +227,7 @@ extension SearchViewController: SearchDataSourceProtocol {
         }
     }
     
-    func buttonHideConfig(searchText: String) {
+    func tableViewHideStatus(searchText: String) {
 //        locationButton.isHidden = !searchText.isEmpty
         searchTableView.isHidden = searchText.isEmpty
     }

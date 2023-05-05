@@ -121,19 +121,11 @@ extension WeatherForecastHeroUIView {
 
         weatherMainLabel.text = "\(daily.weather[0].main) - \(daily.weather[0].description)"
 
-//        let tomorrow = Calendar.current.date(byAdding: .day, value: 1, to: daily.dt)!
-//        let days = dateFormatter.string(from: tomorrow)
-//        daysLabel.text = days
-        
         let date = Date(timeIntervalSince1970: TimeInterval(daily.dt))
         let formatDate = dateFormatter.string(from: date)
 
-//        let days = dateFormatter.string(from: daily.dt)
         daysLabel.text = formatDate
 
-//        let icon = daily.weather[0].icon
-//        cloudImageView.sd_setImage(with: URL(string: "https://openweathermap.org/img/wn/\(icon)@2x.png")!)
-        
         let switchIcon = daily.weather[0].conditionName
         cloudImageView.image = UIImage(named: switchIcon)
 

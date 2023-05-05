@@ -12,7 +12,7 @@ protocol SearchDataSourceProtocol: AnyObject {
     func didTapSearchTable(citiesName: String, citiesLat: String, citiesLon: String)
     func reloadData()
     func setCity(city: String)
-    func buttonHideConfig(searchText: String)
+    func tableViewHideStatus(searchText: String)
 }
 
 class SearchDataSource: NSObject {
@@ -92,7 +92,7 @@ extension SearchDataSource: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
                 
-        self.delegate?.buttonHideConfig(searchText: searchText)
+        self.delegate?.tableViewHideStatus(searchText: searchText)
         
         if searchText.isEmpty {
             searchCities.removeAll()

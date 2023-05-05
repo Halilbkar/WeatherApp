@@ -13,9 +13,10 @@ protocol SearchFavoriteCollectionViewCellProtocol: AnyObject {
 
 class SearchFavoriteCollectionViewCell: UICollectionViewCell {
     
-    static let identifier = "SearchFavoriteCollectionViewCell"
-    
-    let favCityLabel: UILabel = {
+    weak var delegate: SearchFavoriteCollectionViewCellProtocol?
+    var selectedIndexPath: IndexPath?
+
+    private lazy var favCityLabel: UILabel = {
         let label = UILabel()
         
         label.text = "City"
@@ -28,8 +29,7 @@ class SearchFavoriteCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
-    
-    let backImageView: UIImageView = {
+    private lazy var backImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.clipsToBounds = true
         imageView.image = UIImage(named: "background")
@@ -39,7 +39,7 @@ class SearchFavoriteCollectionViewCell: UICollectionViewCell {
         return imageView
     }()
     
-    let notFavButton: UIButton = {
+    private lazy var notFavButton: UIButton = {
         let button = UIButton()
         
         button.layer.cornerRadius = 10
@@ -51,10 +51,6 @@ class SearchFavoriteCollectionViewCell: UICollectionViewCell {
         
         return button
     }()
-    
-    var selectedIndexPath: IndexPath?
-    
-    weak var delegate: SearchFavoriteCollectionViewCellProtocol?
     
     override init(frame: CGRect) {
         super .init(frame: frame)

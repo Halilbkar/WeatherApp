@@ -10,9 +10,7 @@ import SDWebImage
 
 class WeatherHomeCollectionViewCell: UICollectionViewCell {
     
-    static let identifier = "WeatherHomeCollectionViewCell"
-    
-    var backImageView: UIImageView = {
+    private lazy var backImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
@@ -20,7 +18,7 @@ class WeatherHomeCollectionViewCell: UICollectionViewCell {
         return imageView
        }()
     
-    let windStackView: UIStackView = {
+    private lazy var windStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.alignment = .center
@@ -30,7 +28,7 @@ class WeatherHomeCollectionViewCell: UICollectionViewCell {
         return stackView
     }()
     
-    var windImageView: UIImageView = {
+    private lazy var windImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.clipsToBounds = true
         imageView.contentMode = .scaleAspectFit
@@ -39,7 +37,7 @@ class WeatherHomeCollectionViewCell: UICollectionViewCell {
         return imageView
     }()
     
-    var degreeLabel: UILabel = {
+    private lazy var degreeLabel: UILabel = {
         let label = UILabel()
         label.text = "wind"
         label.font = .boldSystemFont(ofSize: 15)
@@ -48,7 +46,7 @@ class WeatherHomeCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
-    let clockLabel: UILabel = {
+    private lazy var clockLabel: UILabel = {
         let label = UILabel()
         label.text = "wind"
         label.font = .boldSystemFont(ofSize: 15)

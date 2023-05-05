@@ -10,7 +10,6 @@ import SDWebImage
 
 class WeatherForecastTableViewCell: UITableViewCell {
 
-    static let identifier = "WeatherForecastTableViewCell"
     
     private let cloudImageView: UIImageView = {
         let imageView = UIImageView()

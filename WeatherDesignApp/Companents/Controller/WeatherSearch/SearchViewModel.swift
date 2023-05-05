@@ -14,12 +14,11 @@ protocol SearchViewModelProtocol: AnyObject {
 
 class SearchViewModel {
     
-    lazy var dataSource = SearchDataSource()
+    var dataSource = SearchDataSource()
     
     weak var delegate: SearchViewModelProtocol?
     
     let locationManager = CLLocationManager()
-    
 }
 
 extension SearchViewModel {
